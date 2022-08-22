@@ -10,4 +10,4 @@ export type GetOneWorkoutRes = Workout;
 
 // 404 NotFoundException - 'Brak takiego ćwiczenia'
 
-export type UpdateWorkoutRes = Pick<Workout, 'id' | 'title' | 'reps' | 'load'>;;
+export type UpdateWorkoutRes = Pick<Workout, 'id' | 'title' | 'reps' | 'load'>;
