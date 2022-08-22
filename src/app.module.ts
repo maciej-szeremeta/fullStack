@@ -1,3 +1,4 @@
+import { WorkoutController, } from './workout/workout.controller';
 import { Module, } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions, } from '@nestjs/typeorm';
 import { config, } from 'ormconfig.autosync';
@@ -6,7 +7,7 @@ import { AppService, } from './app.service';
 
 @Module({
   imports: [ TypeOrmModule.forRoot(config as TypeOrmModuleOptions), ],
-  controllers: [ AppController, ],
+  controllers: [ AppController, WorkoutController, ],
   providers: [ AppService, ],
 })
 export class AppModule {}
