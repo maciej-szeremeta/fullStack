@@ -50,6 +50,6 @@ export class WorkoutController {
       @Param('id') id: string,
       @Body() workout: UpdateWorkoutDto
    ) {
-     return { msg:`Update Workout nr ${id} to "${workout.body}"`, };
+     return { msg:`Update Workout nr ${id}"`, payload:workout, };
    }
 }
