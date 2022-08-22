@@ -1,7 +1,7 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn, } from 'typeorm';
 
 @Entity()
-export class Workput extends BaseEntity{
+export class Workout extends BaseEntity{
 
 @PrimaryGeneratedColumn('uuid')
   id: string;

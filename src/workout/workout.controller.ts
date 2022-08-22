@@ -1,15 +1,19 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UsePipes, ValidationPipe, } from '@nestjs/common';
+import { CreateWorkoutRes, GetAllWorkoutsRes, GetOneWorkoutRes, UpdateWorkoutRes, } from '../interfaces/workout';
 import { CreateWorkoutDto, } from './dto/create-workout.dto';
 import { UpdateWorkoutDto, } from './dto/update-workout.dto';
+import { WorkoutService, } from './workout.service';
 
 @Controller('/workouts')
 export class WorkoutController {
 
+  constructor(private readonly workoutService: WorkoutService) { }
+
    // @ GET All Workouts
    // @ Auth All
    @Get('/')
-  async getAllWorkouts() {
-    return { msg:'GET All Workouts', };
+  async getAllWorkouts():Promise<GetAllWorkoutsRes> {
+    return this.workoutService.getAllWorkouts();
   }
 
    // @ GET One Workout
@@ -18,8 +22,8 @@ export class WorkoutController {
    @UsePipes(ValidationPipe)
    async getOneWorkout(
       @Param('id') id: string
-   ) {
-     return { msg:`GET One Workout nr ${id}`, };
+   ):Promise<GetOneWorkoutRes> {
+     return this.workoutService.getOneWorkout(id);
    }
 
    // @ POST Workout
@@ -28,8 +32,8 @@ export class WorkoutController {
    @UsePipes(ValidationPipe)
    async addWorkout(
       @Body() workout: CreateWorkoutDto
-   ) {
-     return { msg:'Add Workout', payload:workout, };
+   ):Promise<CreateWorkoutRes> {
+     return this.workoutService.addWorkout(workout);
    }
 
    // @ DELETE Workout
@@ -38,8 +42,8 @@ export class WorkoutController {
    @UsePipes(ValidationPipe)
    async deleteWorkout(
       @Param('id') id: string
-   ) {
-     return { msg:`Delete One Workout nr ${id}`, };
+   ):Promise<string> {
+     return this.workoutService.deleteWorkout(id);
    }
 
    // @ Update Workout
@@ -49,7 +53,7 @@ export class WorkoutController {
    async updateWorkout(
       @Param('id') id: string,
       @Body() workout: UpdateWorkoutDto
-   ) {
-     return { msg:`Update Workout nr ${id}"`, payload:workout, };
+   ):Promise<UpdateWorkoutRes> {
+     return this.workoutService.updateWorkout(id, workout);
    }
 }
