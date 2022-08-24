@@ -22,6 +22,6 @@ export class Workout extends BaseEntity{
   createdAt: Date;
    
 @UpdateDateColumn()
-  updateAt: Date;
+  updatedAt: Date;
 
 }

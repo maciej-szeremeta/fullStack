@@ -4,9 +4,14 @@ import { NestExpressApplication, } from '@nestjs/platform-express';
 import * as morgan from 'morgan';
 import rateLimit from 'express-rate-limit';
 import { ValidationPipe, } from '@nestjs/common';
+import { CORS, } from 'config/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors({
+    credentials: CORS.CREDENTIALS,
+    origin: CORS.ORIGIN,
+  });
   app.setGlobalPrefix('api');
   (app as NestExpressApplication).use(morgan('dev'));
   (app as NestExpressApplication).use( (rateLimit ({

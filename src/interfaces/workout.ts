@@ -1,13 +1,21 @@
-import { Workout, } from '../workout/entities/workout.entity';
 
-export type CreateWorkoutRes = Pick<Workout, 'id' | 'title' | 'reps' | 'load'>;
+export interface WorkoutEntity{
+   id: string;
+   title: string;
+   reps: number;
+   load: number;
+   createdAt: Date;
+   updatedAt: Date;
+}
+
+export type CreateWorkoutRes = Omit<WorkoutEntity, 'createdAt'| 'updatedAt'>;
 
 // 400 BadRequest - Validation Error
 
-export type GetAllWorkoutsRes = Workout[] | [];
+export type GetAllWorkoutsRes = WorkoutEntity[] | [];
 
-export type GetOneWorkoutRes = Workout;
+export type GetOneWorkoutRes = WorkoutEntity;
 
 // 404 NotFoundException - 'Brak takiego ćwiczenia'
 
-export type UpdateWorkoutRes = Pick<Workout, 'id' | 'title' | 'reps' | 'load'>;
+export type UpdateWorkoutRes = Omit<WorkoutEntity, 'createdAt'| 'updatedAt'>;
